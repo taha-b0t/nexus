@@ -1,0 +1,7 @@
+[project]
+name="nexus"
+version="0.1.0"
+description="AI-Native Real-Time Data Lakehouse Platform"
+requires-python=">=3.11"
+[tool.pytest.ini_options]
+testpaths=["tests"]

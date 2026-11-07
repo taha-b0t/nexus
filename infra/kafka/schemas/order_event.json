@@ -1,0 +1,1 @@
+{"type":"record","name":"OrderEvent","namespace":"nexus","fields":[{"name":"order_id","type":"long"},{"name":"customer_id","type":"long"},{"name":"product_id","type":"long"},{"name":"city","type":"string"},{"name":"quantity","type":"int"},{"name":"unit_price","type":"double"},{"name":"event_time","type":"string"}]}
