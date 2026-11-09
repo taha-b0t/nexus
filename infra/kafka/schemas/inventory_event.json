@@ -1,0 +1,1 @@
+{"fields":[{"name":"product_id","type":"long"},{"name":"city","type":"string"},{"name":"stock","type":"int"},{"name":"updated_at","type":"string"}],"name":"InventoryEvent","namespace":"nexus","type":"record"}

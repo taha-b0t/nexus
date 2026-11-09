@@ -2,7 +2,9 @@ fastapi>=0.110
 uvicorn>=0.29
 pydantic>=2.6
 pytest>=8.0
-# Phase 2+: kafka-python, psycopg[binary]
+pyyaml>=6.0
+kafka-python>=2.0
+fastavro>=1.9
 # Phase 3+: pyspark
 # Phase 5+: dbt-core, dbt-trino
 # Phase 6+: great-expectations, apache-airflow

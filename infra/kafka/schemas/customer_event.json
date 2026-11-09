@@ -1,0 +1,1 @@
+{"fields":[{"name":"customer_id","type":"long"},{"name":"full_name","type":"string"},{"name":"city","type":"string"},{"name":"segment","type":"string"},{"name":"created_at","type":"string"}],"name":"CustomerEvent","namespace":"nexus","type":"record"}

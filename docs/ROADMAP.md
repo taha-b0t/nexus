@@ -8,7 +8,7 @@ the same commit.
 | Week | Dates (Africa/Casablanca) | Phase | Deliverable | Verification gate |
 |---|---|---|---|---|
 | 0 | Sat 7 Nov 2026 | 1 — Foundation ✅ | Postgres schema, synthetic generator, Docker Compose, docs | 6/6 tests, commit `56524a0` read back live |
-| 1 | Mon 9 – Sun 15 Nov | 2 — Streaming | Kafka (KRaft) compose profile, topic + schema definitions, Python producers/consumers, Debezium connector config validated | Producer/consumer round-trip test in lightweight mode; schemas parse; CDC config validated against Postgres init schema |
+| 1 | Mon 9 – Sun 15 Nov | 2 — Streaming ✅ | Kafka (KRaft) compose profile, topic + schema definitions, Python producers/consumers, Debezium connector config validated | Producer/consumer round-trip test in lightweight mode; schemas parse; CDC config validated against Postgres init schema |
 | 2 | Mon 16 – Sun 22 Nov | 3 — Processing | Spark batch Bronze→Silver (working local-mode job), Structured Streaming job with checkpointing + DLQ design | Spark local run on synthetic data: row counts in = cleaned + rejected; dedupe proven by test |
 | 3 | Mon 23 – Sun 29 Nov | 4 — Lakehouse | Parquet Bronze/Silver on local/S3 paths, Iceberg table definitions, Medallion promotion logic, compaction notes | Round-trip write/read test; schema-evolution test; partition layout documented |
 | 4 | Mon 30 Nov – Sun 6 Dec | 5 — Analytics engineering | dbt project completed (staging/intermediate/marts), dimensional model, Trino config + canonical queries | dbt model SQL linted/tested against local DuckDB/Postgres stand-in where Trino unavailable; dbt tests defined and passing in CI mode |

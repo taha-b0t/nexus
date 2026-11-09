@@ -1,0 +1,64 @@
+# NEXUS Kafka topics (Phase 2) — single-broker dev cluster, replication_factor: 1 everywhere.
+# Application topics are created by infra/kafka/create-topics.sh (kafka-init service).
+# CDC topics are created automatically by the Debezium connector; the defaults below
+# are enforced in infra/debezium/register-connector.json (topic.creation.*).
+# Partitioning rule: a customer's events must stay ordered -> key = customer_id.
+# nexus.orders has 6 partitions (highest volume); payments/inventory have 3.
+
+topics:
+  - name: nexus.orders
+    partitions: 6
+    replication_factor: 1
+    retention_ms: 604800000 # 7 days
+    key: customer_id
+    value_schema: schemas/order_event.json
+    produced_by: src/ingestion/producers.py (publish_order / stream_csv)
+    consumed_by: src/processing/stream_kafka_to_bronze.py (Phase 3)
+
+  - name: nexus.payments
+    partitions: 3
+    replication_factor: 1
+    retention_ms: 604800000 # 7 days
+    key: order_id
+    value_schema: schemas/payment_event.json
+    produced_by: src/ingestion/producers.py (publish_payment)
+
+  - name: nexus.inventory
+    partitions: 3
+    replication_factor: 1
+    retention_ms: 604800000 # 7 days
+    key: product_id
+    value_schema: schemas/inventory_event.json
+    produced_by: src/ingestion/producers.py (publish_inventory)
+
+  - name: nexus.customers
+    partitions: 3
+    replication_factor: 1
+    retention_ms: 604800000 # 7 days
+    key: customer_id
+    value_schema: schemas/customer_event.json
+    produced_by: src/ingestion/producers.py (publish_customer)
+
+# Debezium CDC topics: <topic.prefix>.<schema>.<table>, created by the connector.
+# topic.prefix = "cdc" (see infra/debezium/register-connector.json).
+cdc_topics:
+  - name: cdc.public.customers
+    partitions: 1
+    replication_factor: 1
+    source_table: public.customers
+  - name: cdc.public.products
+    partitions: 1
+    replication_factor: 1
+    source_table: public.products
+  - name: cdc.public.orders
+    partitions: 1
+    replication_factor: 1
+    source_table: public.orders
+  - name: cdc.public.payments
+    partitions: 1
+    replication_factor: 1
+    source_table: public.payments
+  - name: cdc.public.inventory
+    partitions: 1
+    replication_factor: 1
+    source_table: public.inventory

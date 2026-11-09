@@ -4,7 +4,7 @@
 >
 > An end-to-end, production-oriented data engineering platform for real-time ingestion, distributed processing, lakehouse storage, analytics, and AI-powered intelligence.
 
-![Status](https://img.shields.io/badge/status-Phase%201%20Foundation-blue)
+![Status](https://img.shields.io/badge/status-Phase%202%20Streaming-blue)
 ![Python](https://img.shields.io/badge/python-3.11+-green)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey)
 
@@ -72,7 +72,7 @@ Layers: **Sources** (PostgreSQL, REST APIs, synthetic generators) → **Ingestio
 
 Full deep-dive for every technology — what it is, why it is here, how it connects, what to learn in what order, and the exact concepts used in this repo — is in [`docs/LEARNING.md`](docs/LEARNING.md).
 
-## Quick start (Phase 1 — works today)
+## Quick start (Phase 2 — works today)
 
 ```bash
 git clone https://github.com/taha-b0t/nexus.git
@@ -82,6 +82,8 @@ make setup          # python venv + dependencies
 make generate       # synthetic Moroccan e-commerce data -> data/synthetic/
 make test           # pytest
 make infra-up       # docker compose: PostgreSQL + MinIO (profile: full adds Kafka etc.)
+make infra-up-full  # + Kafka (KRaft) + Debezium Connect + topic creation
+make stream         # replay data/synthetic/orders.csv into nexus.orders
 make api            # FastAPI on http://localhost:8000/docs
 ```
 
@@ -112,7 +114,7 @@ nexus/
 | Phase | Scope | Status |
 |---|---|---|
 | 1 — Foundation | PostgreSQL, Python, data generation, Docker | ✅ In this release |
-| 2 — Streaming | Kafka, event schemas, Debezium CDC | 🔜 Scaffolded |
+| 2 — Streaming | Kafka, event schemas, Debezium CDC | ✅ In this release |
 | 3 — Processing | Spark batch + Structured Streaming | 🔜 Scaffolded |
 | 4 — Lakehouse | MinIO, Parquet, Iceberg, Medallion | 🔜 Scaffolded |
 | 5 — Analytics engineering | Trino, dbt, dimensional modelling | 🔜 Scaffolded |
