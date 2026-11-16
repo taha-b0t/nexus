@@ -5,7 +5,7 @@ pytest>=8.0
 pyyaml>=6.0
 kafka-python>=2.0
 fastavro>=1.9
-# Phase 3+: pyspark
+pyspark==3.5.3
 # Phase 5+: dbt-core, dbt-trino
 # Phase 6+: great-expectations, apache-airflow
 # Phase 7+: scikit-learn, pandas

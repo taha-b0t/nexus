@@ -12,3 +12,4 @@ logs/
 .idea/
 .DS_Store
 *.muse-github-snapshot-sync.json
+data/

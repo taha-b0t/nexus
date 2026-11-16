@@ -4,7 +4,7 @@
 >
 > An end-to-end, production-oriented data engineering platform for real-time ingestion, distributed processing, lakehouse storage, analytics, and AI-powered intelligence.
 
-![Status](https://img.shields.io/badge/status-Phase%202%20Streaming-blue)
+![Status](https://img.shields.io/badge/status-Phase%203%20Processing-blue)
 ![Python](https://img.shields.io/badge/python-3.11+-green)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey)
 
@@ -72,7 +72,7 @@ Layers: **Sources** (PostgreSQL, REST APIs, synthetic generators) → **Ingestio
 
 Full deep-dive for every technology — what it is, why it is here, how it connects, what to learn in what order, and the exact concepts used in this repo — is in [`docs/LEARNING.md`](docs/LEARNING.md).
 
-## Quick start (Phase 2 — works today)
+## Quick start (Phase 3 — works today)
 
 ```bash
 git clone https://github.com/taha-b0t/nexus.git
@@ -88,6 +88,14 @@ make api            # FastAPI on http://localhost:8000/docs
 ```
 
 Without Docker, `make generate && make test` still validates the whole Phase 1 pipeline in pure Python.
+Spark batch runs in local mode without Docker too (needs Java 11+):
+
+```bash
+python -m src.processing.bronze_to_silver \
+    --csv data/synthetic/orders.csv \
+    --bronze data/bronze/orders --silver data/silver/orders \
+    --rejected data/silver/orders_rejected
+```
 
 ## Repository layout
 
@@ -115,7 +123,7 @@ nexus/
 |---|---|---|
 | 1 — Foundation | PostgreSQL, Python, data generation, Docker | ✅ In this release |
 | 2 — Streaming | Kafka, event schemas, Debezium CDC | ✅ In this release |
-| 3 — Processing | Spark batch + Structured Streaming | 🔜 Scaffolded |
+| 3 — Processing | Spark batch + Structured Streaming | ✅ In this release |
 | 4 — Lakehouse | MinIO, Parquet, Iceberg, Medallion | 🔜 Scaffolded |
 | 5 — Analytics engineering | Trino, dbt, dimensional modelling | 🔜 Scaffolded |
 | 6 — Orchestration & quality | Airflow, Great Expectations, tests | 🔜 Scaffolded |
